@@ -7,11 +7,10 @@ import DecryptedText from "./DecryptedText";
 import LiquidEther from "./LiquidEther";
 
 const TITLE = "Sean's Portfolio";
-const TITLE_DECRYPT_DURATION_MS = 2000;
-const TITLE_DECRYPT_SPEED = Math.max(
-  1,
-  Math.round(TITLE_DECRYPT_DURATION_MS / TITLE.replace(/\s/g, "").length),
-);
+const TITLE_DECRYPT_CONFIG = {
+  durationMs: 1500,
+  speedMsPerCharacter: null as number | null,
+};
 const ETHER_COLORS = ["#5227FF", "#FF9FFC", "#B19EEF"];
 
 type ProgressPhase =
@@ -30,6 +29,15 @@ function randomInt(min: number, max: number) {
   const normalizedMin = Math.ceil(min);
   const normalizedMax = Math.floor(max);
   return Math.floor(Math.random() * (normalizedMax - normalizedMin + 1)) + normalizedMin;
+}
+
+function getTitleDecryptSpeed(text: string) {
+  if (TITLE_DECRYPT_CONFIG.speedMsPerCharacter !== null) {
+    return TITLE_DECRYPT_CONFIG.speedMsPerCharacter;
+  }
+
+  const visibleCharacterCount = Math.max(1, text.replace(/\s/g, "").length);
+  return Math.max(1, Math.round(TITLE_DECRYPT_CONFIG.durationMs / visibleCharacterCount));
 }
 
 function easeInOutCubic(progress: number) {
@@ -189,10 +197,10 @@ export default function IntroExperience() {
             transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="mt-5 flex flex-wrap items-end justify-center gap-x-5 gap-y-3"
           >
-            <h1 className="text-4xl font-semibold leading-none text-white text-balance sm:text-6xl lg:text-[5.5rem]">
+            <h1 className="text-6xl font-semibold leading-none text-white text-balance">
               <DecryptedText
                 text={TITLE}
-                speed={TITLE_DECRYPT_SPEED}
+                speed={getTitleDecryptSpeed(TITLE)}
                 sequential
                 revealDirection="start"
                 animateOn="mount"
@@ -211,7 +219,7 @@ export default function IntroExperience() {
                   : { opacity: 0, y: 12, filter: "blur(10px)" }
               }
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="text-base font-medium tabular-nums text-white/78 sm:mb-2 sm:text-2xl"
+              className="text-base font-medium tabular-nums text-white/78 sm:mb-2 sm:text-xl"
             >
               [{progress}%]
             </motion.span>
