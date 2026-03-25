@@ -7,6 +7,11 @@ import DecryptedText from "./DecryptedText";
 import LiquidEther from "./LiquidEther";
 
 const TITLE = "Sean's Portfolio";
+const TITLE_DECRYPT_DURATION_MS = 2000;
+const TITLE_DECRYPT_SPEED = Math.max(
+  1,
+  Math.round(TITLE_DECRYPT_DURATION_MS / TITLE.replace(/\s/g, "").length),
+);
 const ETHER_COLORS = ["#5227FF", "#FF9FFC", "#B19EEF"];
 
 type ProgressPhase =
@@ -187,7 +192,7 @@ export default function IntroExperience() {
             <h1 className="text-4xl font-semibold leading-none text-white text-balance sm:text-6xl lg:text-[5.5rem]">
               <DecryptedText
                 text={TITLE}
-                speed={24}
+                speed={TITLE_DECRYPT_SPEED}
                 sequential
                 revealDirection="start"
                 animateOn="mount"
