@@ -1,22 +1,22 @@
 import { ViewTransition } from "react";
 
-import IntroExperience from "./components/IntroExperience";
+import Hero from "../components/hero";
 import {
   INTRO_TO_HERO_TRANSITION,
   PORTFOLIO_STAGE_TRANSITION,
-} from "./transitionConfig";
+} from "../transitionConfig";
 
-export default function Home() {
+export default function HeroPage() {
   return (
     <ViewTransition
       name={PORTFOLIO_STAGE_TRANSITION}
-      exit={{
-        [INTRO_TO_HERO_TRANSITION]: "portfolio-intro-exit",
+      enter={{
+        [INTRO_TO_HERO_TRANSITION]: "portfolio-hero-enter",
         default: "none",
       }}
       default="none"
     >
-      <IntroExperience />
+      <Hero />
     </ViewTransition>
   );
 }

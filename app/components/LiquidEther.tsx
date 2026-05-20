@@ -2,7 +2,7 @@
 
 /* eslint-disable react-hooks/unsupported-syntax */
 
-import { useEffect, useRef, type CSSProperties, type ReactElement } from "react";
+import { useEffect, useLayoutEffect, useRef, type CSSProperties, type ReactElement } from "react";
 import * as THREE from "three";
 
 export interface LiquidEtherProps {
@@ -93,7 +93,7 @@ export default function LiquidEther({
   const isVisibleRef = useRef(true);
   const resizeRafRef = useRef<number | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!mountRef.current) return;
 
     function makePaletteTexture(stops: string[]) {
@@ -371,7 +371,7 @@ export default function LiquidEther({
         this.manager = manager;
         this.enabled = opts.enabled;
         this.speed = opts.speed;
-        this.resumeDelay = opts.resumeDelay || 3000;
+        this.resumeDelay = opts.resumeDelay ?? 3000;
         this.rampDurationMs = (opts.rampDuration || 0) * 1000;
         this.pickNewTarget();
       }
