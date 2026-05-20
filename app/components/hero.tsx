@@ -1,15 +1,55 @@
 "use client";
 
-import Image from "next/image";
+import type { SVGProps } from "react";
 import { motion } from "motion/react";
-
-import CardSwap, { Card } from "./CardSwap";
 import LiquidChrome from "./LiquidChrome";
 import SplitText from "./SplitText";
 
+function FileTextIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z" />
+      <path d="M14 2v5h5" />
+      <path d="M9 13h6" />
+      <path d="M9 17h6" />
+      <path d="M9 9h1" />
+    </svg>
+  );
+}
+
+function MailIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" />
+      <path d="m22 8-10 6L2 8" />
+    </svg>
+  );
+}
+
 export default function Hero() {
   return (
-    <main className="relative isolate min-h-screen overflow-hidden bg-[#05070b] text-white">
+    <section
+      id="home"
+      className="relative isolate min-h-screen w-full overflow-hidden bg-[#05070b] text-white"
+    >
       <motion.div
         initial={{ opacity: 0, scale: 1.12, filter: "blur(24px) saturate(1.35)" }}
         animate={{ opacity: 0.82, scale: 1, filter: "blur(0px) saturate(1)" }}
@@ -40,6 +80,11 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_22%,rgba(255,255,255,0.12),transparent_34%),linear-gradient(90deg,rgba(5,7,11,0.08),rgba(5,7,11,0.04)_48%,rgba(5,7,11,0.02))]"
       />
 
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-[linear-gradient(180deg,rgba(5,7,11,0)_0%,rgba(5,7,11,0.72)_64%,#05070b_100%)]"
+      />
+
       <motion.section
         initial="hidden"
         animate="show"
@@ -52,15 +97,14 @@ export default function Hero() {
             },
           },
         }}
-        className="relative flex min-h-screen items-center px-8 py-20 sm:px-12 lg:px-24 xl:px-32 2xl:px-40"
+        className="relative flex min-h-screen items-center justify-center px-8 py-20 sm:px-12 lg:px-24 xl:px-32 2xl:px-40"
       >
-        <div className="mx-auto grid w-full max-w-410 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(560px,0.72fr)] xl:grid-cols-[minmax(0,1fr)_minmax(640px,0.78fr)]">
-          <div className="max-w-5xl">
-
+        <div className="mx-auto flex w-full max-w-5xl items-center justify-center text-center">
+          <div className="flex max-w-5xl flex-col items-center">
             <div className="mt-5 max-w-4xl">
               <h1 className="hero-title text-6xl font-semibold leading-[1.02] text-balance sm:text-7xl lg:text-8xl">
                 <SplitText
-                  text="Sean Doinog"
+                  text="Hi! I'm Sean."
                   tag="span"
                   className="hero-reactive-title relative block"
                   delay={150}
@@ -72,7 +116,7 @@ export default function Hero() {
                   threshold={0.1}
                   rootMargin="-100px"
                   animateOn="load"
-                  textAlign="left"
+                  textAlign="center"
                 />
               </h1>
             </div>
@@ -87,11 +131,38 @@ export default function Hero() {
                   transition: { duration: 0.72, ease: [0.16, 1, 0.3, 1] },
                 },
               }}
-              className="mt-7 max-w-2xl text-base leading-7 text-white/72 sm:text-lg"
+              className="mt-5 max-w-2xl text-base leading-7 text-white/72 sm:text-lg"
             >
-              Front-End Developer skilled in React Native, React JS, Next.js, TypeScript, and JavaScript, with a passion for modern responsive design,
-              smooth user experiences, and continuous learning in tech.
+              Developer Focused on Front-End, Mobile & UI/UX Excellence
             </motion.p>
+
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 22, filter: "blur(12px)" },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                  transition: { duration: 0.66, ease: [0.16, 1, 0.3, 1] },
+                },
+              }}
+              className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row"
+            >
+              <a
+                href="#cv"
+                className="group inline-flex h-12 min-w-40 items-center justify-center gap-3 rounded-full border border-white/25 bg-white/10 px-6 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_14px_36px_rgba(0,0,0,0.28)] backdrop-blur-xl transition duration-300 hover:border-white/45 hover:bg-white/18 hover:shadow-[0_18px_48px_rgba(255,255,255,0.12)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 hover:scale-105"
+              >
+                <FileTextIcon className="size-4 shrink-0 transition duration-300" />
+                <span>View CV</span>
+              </a>
+              <a
+                href="#contact"
+                className="group inline-flex h-12 min-w-40 items-center justify-center gap-3 rounded-full border border-white/20 bg-white/[0.07] px-6 text-sm font-semibold uppercase tracking-[0.18em] text-white/92 shadow-[0_14px_36px_rgba(0,0,0,0.24)] backdrop-blur-xl transition duration-1000 hover:border-white/40 hover:bg-white/14 hover:text-white hover:shadow-[0_18px_48px_rgba(255,255,255,0.1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 hover:scale-105"
+              >
+                <MailIcon className="size-4 shrink-0 transition duration-300" />
+                <span>Contact Me</span>
+              </a>
+            </motion.div>
 
             <motion.div
               variants={{
@@ -103,144 +174,41 @@ export default function Hero() {
                   transition: { duration: 0.64, ease: [0.16, 1, 0.3, 1] },
                 },
               }}
-              className="mt-10 flex flex-wrap gap-3 text-sm font-medium uppercase tracking-[0.22em] text-white/58"
+              className="mt-6 flex flex-wrap justify-center gap-2 text-[10px] font-medium uppercase leading-5 tracking-[0.14em] text-white/58 sm:mt-8 sm:gap-3 sm:text-[12px] sm:tracking-[0.22em]"
             >
-              <span>Frontend</span>
+              <a
+                href="https://github.com/NganuuuMaaannn"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open Sean Doinog's GitHub profile"
+                className="rounded-full transition duration-300 hover:text-white hover:shadow-[0_18px_48px_rgba(255,255,255,0.1)] focus:outline-none focus-visible:text-white focus-visible:ring-2 focus-visible:ring-white/60"
+              >
+                GitHub
+              </a>
               <span className="text-white/25">/</span>
-              <span>Backend</span>
+              <a
+                href="https://www.linkedin.com/in/sean-michael-doinog-17a62b3b8"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open Sean Doinog's LinkedIn profile"
+                className="rounded-full transition duration-300 hover:text-white hover:shadow-[0_18px_48px_rgba(255,255,255,0.1)] focus:outline-none focus-visible:text-white focus-visible:ring-2 focus-visible:ring-white/60"
+              >
+                LinkedIn
+              </a>
               <span className="text-white/25">/</span>
-              <span>Interactive Web</span>
+              <a
+                href="https://www.facebook.com/seanthesheepzx"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open Sean Doinog's Facebook profile"
+                className="rounded-full transition duration-300 hover:text-white hover:shadow-[0_18px_48px_rgba(255,255,255,0.1)] focus:outline-none focus-visible:text-white focus-visible:ring-2 focus-visible:ring-white/60"
+              >
+                Facebook
+              </a>
             </motion.div>
           </div>
-
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, x: 34, scale: 0.96, filter: "blur(18px)" },
-              show: {
-                opacity: 1,
-                x: 0,
-                scale: 1,
-                filter: "blur(0px)",
-                transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
-              },
-            }}
-            className="relative hidden h-160 min-w-0 lg:block"
-          >
-            <CardSwap
-              width={570}
-              height={430}
-              cardDistance={34}
-              verticalDistance={26}
-              delay={5000}
-              pauseOnHover={false}
-              skewAmount={2}
-            >
-              <Card customClass="overflow-hidden bg-black/42 p-0 text-white shadow-[0_24px_80px_rgba(0,0,0,0.46)] backdrop-blur-xl border-white/18">
-                <Image
-                  src="/images/bayadbox.png"
-                  alt="BayadBox"
-                  fill
-                  className="object-cover"
-                  sizes="670px"
-                />
-
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-
-                <div className="absolute bottom-0 left-0 right-0 p-7">
-                  <h3 className="mt-4 text-2xl font-semibold leading-tight text-white">
-                    BayadBox
-                  </h3>
-                </div>
-              </Card>
-              <Card customClass="overflow-hidden bg-black/42 p-0 text-white shadow-[0_24px_80px_rgba(0,0,0,0.46)] backdrop-blur-xl border-white/18">
-                <Image
-                  src="/images/think-a-goal.png"
-                  alt="Think A Goal"
-                  fill
-                  className="object-cover"
-                  sizes="670px"
-                />
-
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-
-                <div className="absolute bottom-0 left-0 right-0 p-7">
-                  <h3 className="mt-4 text-2xl font-semibold leading-tight text-white">
-                    Think A Goal
-                  </h3>
-                </div>
-              </Card>
-              <Card customClass="overflow-hidden bg-black/42 p-0 text-white shadow-[0_24px_80px_rgba(0,0,0,0.46)] backdrop-blur-xl border-white/18">
-                <Image
-                  src="/images/love-davao.png"
-                  alt="Love Davao"
-                  fill
-                  className="object-cover"
-                  sizes="670px"
-                />
-
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-
-                <div className="absolute bottom-0 left-0 right-0 p-7">
-                  <h3 className="mt-4 text-2xl font-semibold leading-tight text-white">
-                    Love, Davao!
-                  </h3>
-                </div>
-              </Card>
-              <Card customClass="overflow-hidden bg-black/42 p-0 text-white shadow-[0_24px_80px_rgba(0,0,0,0.46)] backdrop-blur-xl border-white/18">
-                <Image
-                  src="/images/onlinememfee.png"
-                  alt="HCDC ITS Online Membership Fee System"
-                  fill
-                  className="object-cover"
-                  sizes="670px"
-                />
-
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-
-                <div className="absolute bottom-0 left-0 right-0 p-7">
-                  <h3 className="mt-4 text-2xl font-semibold leading-tight text-white">
-                    HCDC ITS Online Membership Fee System
-                  </h3>
-                </div>
-              </Card>
-              <Card customClass="overflow-hidden bg-black/42 p-0 text-white shadow-[0_24px_80px_rgba(0,0,0,0.46)] backdrop-blur-xl border-white/18">
-                <Image
-                  src="/images/hcdc-comelec.png"
-                  alt="HCDC Comelec Voting System"
-                  fill
-                  className="object-cover"
-                  sizes="670px"
-                />
-
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-
-                <div className="absolute bottom-0 left-0 right-0 p-7">
-                  <h3 className="mt-4 text-2xl font-semibold leading-tight text-white">
-                      HCDC Comelec Voting System
-                    </h3>
-                </div>
-              </Card>
-              <Card customClass="overflow-hidden bg-black/42 p-0 text-white shadow-[0_24px_80px_rgba(0,0,0,0.46)] backdrop-blur-xl border-white/18">
-                <Image
-                  src="/images/portfolio.png"
-                  alt="My Portfolio"
-                  fill
-                  className="object-cover"
-                  sizes="670px"
-                />
-
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-
-                <div className="absolute bottom-0 left-0 right-0 p-7">
-                  <h3 className="mt-4 text-2xl font-semibold leading-tight text-white">
-                      My Portfolio
-                    </h3>
-                </div>
-              </Card>
-            </CardSwap>
-          </motion.div>
         </div>
       </motion.section>
-    </main>
+    </section>
   );
 }

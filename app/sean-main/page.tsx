@@ -1,5 +1,6 @@
 import { ViewTransition } from "react";
 
+import AboutMe from "../components/AboutMe";
 import Hero from "../components/hero";
 import {
   INTRO_TO_HERO_TRANSITION,
@@ -16,7 +17,10 @@ export default function HeroPage() {
       }}
       default="none"
     >
-      <Hero />
+      <main className="bg-[#05070b] text-white">
+        <Hero />
+        <AboutMe />
+      </main>
     </ViewTransition>
   );
 }
